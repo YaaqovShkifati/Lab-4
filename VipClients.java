@@ -9,7 +9,10 @@ import java.util.*;
 import java.io.*;
 import java.util.ArrayList;
 
-
+/**
+ * The vipClient class reads multiple files at time, and stores the sorted list
+ * into an queue of an arrayList. Then we merge all the queues in the array list. 
+ */
 public class VipClients  {
 
     private String[] fiscal;
@@ -17,7 +20,10 @@ public class VipClients  {
     private LinkQueue quarterQueue;
    
     
-
+      /**
+      * The VipClients constructor initializes the link Queue.
+      * @throws IOException 
+      */
     public VipClients() throws IOException {
 
         fiscal = new String[]{"week1.csv", "week2.csv", "week3.csv", "week4.csv", "week5.csv", "week6.csv",
@@ -33,10 +39,22 @@ public class VipClients  {
      
     }
     
+     /**
+     * The LinkQueue class extends the link class, which is also an extention of 
+     * the Linked list class. 
+     */
     public static class LinkQueue extends Link {
-        
+        /**
+         *  No argument constructor.
+         */
         public LinkQueue(){ }
 
+         /**
+         * The the LinkQueue constructor reads a one csv file at a time a stores
+         * it into a linked queue.
+         * @param filename Weekly song tracks.
+         * @throws IOException 
+         */
         public LinkQueue(String filename) throws IOException {
 
             Scanner input = new Scanner(new File(filename), "UTF-8");
@@ -54,6 +72,12 @@ public class VipClients  {
             }
         }
     }
+    
+     /**
+     * The merge method mergers all the queues into one queue.
+     * @return the quarterQueue.
+     * @throws IOException 
+     */
     public LinkQueue merge()throws IOException {
        
         quarterQueue= new LinkQueue();
@@ -82,6 +106,10 @@ public class VipClients  {
         return quarterQueue;
     }
     
+    /**
+     * Prints the sorted queue.
+     * @throws Exception 
+     */
     public void print()throws Exception{
               merge().displayList();
     }
